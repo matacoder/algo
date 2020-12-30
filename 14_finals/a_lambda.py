@@ -17,14 +17,25 @@ OK
 import functools
 
 
-def compile_biggest_number(lst):
+def comparator(a, b):
+    ab = int(a + b)
+    ba = int(b + a)
+    if ab > ba:
+        return -1
+    elif ab < ba:
+        return 1
+    return 0
+
+
+def compile_biggest_number(numbers):
     """
     Compile biggest number
     :param numbers: Array of numbers as strings
     :return: Number as string
     """
-    return ''.join(sorted(lst,
-                          key=functools.cmp_to_key(lambda a, b: (int(b + a) > int(a + b)) - (int(b + a) < int(a + b)))))
+    numbers = sorted(numbers, key=lambda arr: arr[0::1], reverse=True)
+    # print(numbers)
+    return ''.join(numbers)
 
 
 if __name__ == "__main__":

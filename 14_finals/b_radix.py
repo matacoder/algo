@@ -5,14 +5,14 @@ dmatakov@yandex.ru
 
 Алгоритм поразрядной сортировки
 
-24 дек 2020, 13:33:44
-45837599
+27 дек 2020, 22:18:16
+45940555
 B
 Python 3.7.3
 OK
 -
-476ms
-9.59Mb
+0.514s
+9.70Mb
 """
 
 
@@ -40,6 +40,7 @@ def counting_sort(array, place):
 
     for i in range(0, size):
         array[i] = output[i]
+    return array
 
 
 def radix_sort(array):
@@ -51,12 +52,11 @@ def radix_sort(array):
     while max_element // place > 0:
         counting_sort(array, place)
         place *= 10
+    return array
 
 
 if __name__ == "__main__":
     _ = input()
     data = [int(i) for i in input().split()]
-
-    radix_sort(data)
-    data = [str(i) for i in data]
-    print(' '.join(data))
+    data = radix_sort(data)
+    print(*data)
