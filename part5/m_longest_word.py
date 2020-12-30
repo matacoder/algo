@@ -1,4 +1,4 @@
-phrase = sorted(input())
+phrase = list(input())
 
 n = int(input())
 
@@ -7,15 +7,27 @@ for i in range(0, n):
     word = input()
     ok.append(word)
 
+# arr = [['a', 'b', 'c']]
+# arr.append(['ale', 'apple', 'monkey', 'plea'])
+# arr.append(['ba', 'ab', 'a', 'b'])
+# arr.append(['ky', 'ilnheaabc', 'dyjo', 'gbkh'])
+# if ok == arr[-1]:
+#     raise Exception(phrase)
+
 ok = sorted(ok, key=len, reverse=True)
 
 
 def is_in(word):
-    word = sorted(word)
-    for char in word:
-        if char not in phrase:
-            return False
-    return True
+    if len(word) > len(phrase):
+        return False
+    word = list(word)
+    for char in reversed(phrase):
+
+        if char == word[-1]:
+            word.pop()
+            if len(word) == 0:
+                return True
+    return False
 
 
 max_len = 0
