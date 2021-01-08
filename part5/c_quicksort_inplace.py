@@ -1,4 +1,5 @@
 from random import randint
+from sys import getsizeof
 
 
 def sub_partition(array, start, end, idx_pivot):
@@ -36,21 +37,16 @@ def quicksort(array, start=0, end=None):
 
 
 n = int(input())
-to_sort = []
-for i in range(0, n):
-    to_sort.append(input().split())
-# print(to_sort)
 
-
-all_solved = []
+# all_solved = []
 
 db = {}
-while len(to_sort):
-    score = to_sort.pop()
+for i in range(n):
+    score = input().split()
     name = score[0]
     solved = int(score[1])
     fee = int(score[2])
-    all_solved.append(solved)
+    # all_solved.append(solved)
     if solved not in db:
         db[solved] = {}
     if fee not in db[solved]:
@@ -59,13 +55,13 @@ while len(to_sort):
     else:
         db[solved][fee].append(name)
 # print(db)
+# print(getsizeof(db))
+# print(getsizeof(all_solved))
 
-all_solved = list(set(all_solved))
-all_solved = list(reversed(quicksort([int(i) for i in all_solved])))
+# all_solved = list(set(all_solved))
+# all_solved = list(reversed(quicksort([int(i) for i in all_solved])))
 
-
-
-for solved_item in all_solved:
+for solved_item in sorted(db, reverse=True):
     # print(solved_item)
     current_fees = list(db[solved_item].keys())
     # print(current_fees)
